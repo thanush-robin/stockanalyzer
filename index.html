@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analyzer Tool</title> 
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <header>
+        <a href="#" class="logo header-logo"><img src="img/stock-logo.png" alt="Stock Analyzer Logo"></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <div class="navbar">
+            <a href="#home">Home</a>
+            <a href="#tools">Stock Tools</a>
+            <a href="#alerts">Alerts</a>
+            <a href="#app">App</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-text">
+            <span>Welcome to</span>
+            <h1>Stock Analyzer Tool</h1>
+            <h2>Analyze market trends<br>with ease</h2>
+           
+            <a href="#" class="btn" id="start-analyzing">Start Analyzing</a>
+            <div id="analysis-result"></div>
+
+        </div>
+        <div class="home-img">
+            <img src="img/stock-background.jpg" alt="Stock Analyzer">
+        </div>
+    </section>
+
+    <section class="stock-analysis" id="analysis">
+        <div class="section-heading">
+            <span>Stock Tools</span>
+            <h1>Analyze Stocks</h1>
+        </div>
+        <div class="tools-container">
+            <div class="tool-box">
+                <div class="tool-img">
+                    <img src="img/indicator1.png" alt="Technical Indicator">
+                </div>
+                <h2>Technical Indicators</h2>
+                <a href="#" class="btn">Use Tool</a>
+            </div>
+            <div class="tool-box">
+                <div class="tool-img">
+                    <img src="img/indicator2.png" alt="Stock Prediction">
+                </div>
+                <h2>Stock Prediction</h2>
+                <a href="#" class="btn">Analyze Now</a>
+            </div>
+            <div class="tool-box">
+                <div class="tool-img">
+                    <img src="img/indicator3.png" alt="Market Trends">
+                </div>
+                <h2>Market Trends</h2>
+                <a href="#" class="btn">Explore</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="alerts" id="alerts">
+        <div class="section-heading">
+            <span>Stay Updated</span>
+            <h1>Get Stock Alerts</h1>
+        </div>
+        <div class="container">
+            <div class="alerts-img">
+                <img src="img/alerts.jpg" alt="Stock Alerts">
+            </div>
+            <div class="alerts-text">
+                <h2>Get real-time alerts on stock price changes</h2>
+                <p>We offer notifications on stock price movements, major news events, and market trends. Customize your alerts based on your preferred stocks and price thresholds.</p>
+                <a href="#" class="btn">Set Alerts</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="app" id="app">
+        <div class="section-heading">
+            <span>Our App</span>
+            <h1>Download Our Stock Analyzer App</h1>
+        </div>
+        <div class="container">
+            <div class="app-text">
+                <h2>Track Stocks on the Go</h2>
+                <p>Download our mobile app to access real-time stock prices, historical data, analysis tools, and alerts right from your phone!</p>
+                <a href="#" class="btn">Get App</a>
+            </div>
+            <div class="app-img">
+                <img src="img/app.png" alt="Stock App">
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-heading">
+            <span>About Us</span>
+            <h1>Who We Are</h1>
+        </div>
+        <div class="container">
+            <div class="about-img">
+                <img src="img/about.jpg" alt="About Stock Analyzer Tool">
+            </div>
+            <div class="about-text">
+                <h2>Innovative Stock Analysis Platform</h2>
+                <p>Our platform empowers traders and investors to make better decisions by providing powerful tools and actionable insights on the stock market.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social">
+            <a href="#" class="bx bxl-facebook"></a>
+            <a href="#" class="bx bxl-twitter"></a>
+            <a href="#" class="bx bxl-linkedin"></a>
+            <a href="#" class="bx bxl-instagram"></a>
+        </div>
+        <div class="links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">FAQ</a>
+        </div>
+        <p>&copy; 2025 Stock Analyzer Tool. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        const menuIcon = document.getElementById('menu-icon');
+        const navbar = document.querySelector('.navbar');
+
+        menuIcon.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+        
+    document.getElementById('start-analyzing').onclick = function () {
+        fetch('/analyze')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('analysis-result').innerHTML = `
+                    <h2>Total Return: ${data.total_return}</h2>
+                    <img src="${data.plot_url}" alt="Stock Analysis Chart">
+                `;
+            })
+            .catch(error => console.error('Error:', error));
+    };
+    </script>
+</body>
+
+
+</html>
